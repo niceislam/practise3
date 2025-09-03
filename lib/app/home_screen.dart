@@ -60,6 +60,10 @@ class _HomeScreenState extends State<HomeScreen> {
                         ? Text(
                           "${item.semester}nd semester",
                           style: TextStyle(fontSize: 18),
+                        ): int.parse(item.semester) == 1
+                        ? Text(
+                          "${item.semester}st semester",
+                          style: TextStyle(fontSize: 18),
                         )
                         : int.parse(item.semester) == 3
                         ? Text(
