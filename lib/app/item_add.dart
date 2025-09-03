@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
+import 'package:listview_picker/app/home_screen.dart';
 import 'package:listview_picker/app/widget.dart';
 
 import 'item_details.dart';
@@ -11,8 +12,6 @@ class ItemAdd extends StatefulWidget {
   @override
   State<ItemAdd> createState() => _ItemAddState();
 }
-
-List b = [];
 
 class _ItemAddState extends State<ItemAdd> {
   TextEditingController namecontroller = TextEditingController();
@@ -64,10 +63,20 @@ class _ItemAddState extends State<ItemAdd> {
                 ),
                 onPressed: () {
                   final item = Items;
-                  b = item;
-
-
-                  log("===============${item.length}====");
+                  item.add(
+                    detailsitem(
+                      image: "${imagecontroller.text}",
+                      name: "${namecontroller.text}",
+                      semester: "${semestercontroller.text}",
+                      details: "${detailscontroller.text}",
+                    ),
+                  );
+                  setState(() {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (c) => HomeScreen()),
+                    );
+                  });
                 },
                 child: Text(
                   "Add",

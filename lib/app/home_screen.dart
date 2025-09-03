@@ -32,12 +32,12 @@ class _HomeScreenState extends State<HomeScreen> {
         itemCount: Items.length,
         itemBuilder: (context, index) {
           final item = Items[index];
-          return GestureDetector(
+          return InkWell(
             onTap: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                  builder: (C) => DetailsScreeen(item: item.details),
+                  builder: (c) => DetailsScreeen(item: item.details),
                 ),
               );
             },
@@ -55,7 +55,21 @@ class _HomeScreenState extends State<HomeScreen> {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                subtitle: Text("${item.name}", style: TextStyle(fontSize: 18)),
+                subtitle:
+                    int.parse(item.semester) == 2
+                        ? Text(
+                          "${item.semester}nd semester",
+                          style: TextStyle(fontSize: 18),
+                        )
+                        : int.parse(item.semester) == 3
+                        ? Text(
+                          "${item.semester}rd semester",
+                          style: TextStyle(fontSize: 18),
+                        )
+                        : Text(
+                          "${item.semester}th semester",
+                          style: TextStyle(fontSize: 18),
+                        ),
               ),
             ),
           );
@@ -64,7 +78,8 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(context, MaterialPageRoute(builder: (c)=> ItemAdd()));},
+          Navigator.push(context, MaterialPageRoute(builder: (c) => ItemAdd()));
+        },
         child: Icon(Icons.add, size: 32),
       ),
     );
